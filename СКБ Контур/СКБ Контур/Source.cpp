@@ -53,7 +53,7 @@ public:
 	{
 		if (!(value.find(ch) != value.end()))
 		{
-			for (int i = number; i < M; i++)
+			for (int i = number; i < M; i++) // если ключ не найден в value, ищет его среди составных высказываний и вычисляет
 			{
 				if (operation[i][0] == ch)
 				{
@@ -71,7 +71,7 @@ public:
 	Value calculate(string str, int number)
 	{
 		Value left, right;
-		if (!(str.find('|') != str.npos) & !(str.find('&') != str.npos))
+		if (!(str.find('|') != str.npos) & !(str.find('&') != str.npos)) // для обработки случаев, подобных этому: 1 1 A 0 B = A
 		{
 			switch (getValue(str[4], number))
 			{
@@ -141,7 +141,7 @@ public:
 		for (int i = 0; i < M; i++)
 		{
 			calculate(operation[i], i);
-			for (int j = i + 1; j < M; j++)
+			for (int j = i + 1; j < M; j++)// своеобразный костыль, для корректной обработки следующих строк и снижения сложности алгоритма с О(2^N) до O(N^3)
 			{
 				if (value.find(operation[j][0]) != value.end())
 				{
